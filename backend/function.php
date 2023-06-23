@@ -24,6 +24,9 @@ function translit_path($value)
 function upload($result1){
     $date = date("Y-m-d-H.i.s");
     $name = $_POST['example'] . $date;
+    if(!file_exists('../upload')) {
+        mkdir('../upload');
+    }
     while($row = mysqli_fetch_assoc($result1)){
         file_put_contents("../upload/$name.csv", implode(";;", $row) . PHP_EOL, FILE_APPEND);
     };
